@@ -1,0 +1,17 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>All question ({{num}})</h1>
+        <h1>Lastest questions</h1>
+        {% if latested %}
+            <ul>
+            {% for question in latested %}
+                <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No polls are available.</p>
+        {% endif %}
+    </body>
+</html>

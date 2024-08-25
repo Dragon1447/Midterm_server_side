@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}
+    Position
+{% endblock %}
+
+{% block content %}
+    <div class="head">
+        <h1>Position</h1>
+    </div>
+    
+    <div class="itemGroup">
+        {% for position in position_list %}
+        <div class="item">
+            <div>{{ position.id }}. {{ position.name }}</div>
+            <div class="action">{{ position.employee_set.count }} People</div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block script %}
+    
+    <!-- คุณสามารถเพิ่มสคริปต์พิเศษที่ใช้ในหน้านี้ได้ที่นี่ -->
+{% endblock %}

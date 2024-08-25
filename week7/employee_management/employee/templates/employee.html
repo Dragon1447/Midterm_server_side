@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load humanize %}  <!-- สำหรับการแสดงผลเงินเดือนด้วย comma -->
+{% block title %}
+    Employee
+{% endblock %}
+
+{% block nav %}
+{% include 'nav.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="head">
+        <h1>Employee</h1>
+        <div>
+            <h1>Total {{ num }} People</h1>
+        </div>
+    </div>
+
+    <table> 
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Gender</th>
+                <th>Birth Date</th>
+                <th>Hire Date</th>
+                <th>Salary</th>
+                <th>Department</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+
+        <tbody>
+                {% for employee in employee_list %}
+                <tr style="{% if forloop.first or forloop.last %}color: red;{% endif %}">
+                    <td>{{ employee.id }}</td>
+                    <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+                    <td>
+                        {% if employee.gender == 'M' %}Male
+                        {% elif employee.gender == 'F' %}Female
+                        {% else %}Other{% endif %}
+                    </td>
+                    <td>{{ employee.birth_date|date:"d/m/Y" }}</td>
+                    <td>{{ employee.hire_date|date:"d/m/Y" }}</td>
+                    <td>{{ employee.salary|intcomma }}</td>
+                    <td>{{ employee.position.department.name }}</td>
+                    <td>{{ employee.position.name }}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

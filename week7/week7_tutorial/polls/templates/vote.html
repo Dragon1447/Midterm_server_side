@@ -1,0 +1,20 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Question: {{ question.question_text }}</h1>
+        <p>Publist date: {{ question.pub_date }}</p>
+        <form action="/polls/{{ question.id }}/vote/" method="POST">
+            {%csrf_token%}
+            <ul>
+            {% for choice in choices %}
+                <li>
+                    <input type="radio" id="choice{{ forloop.counter }}" name="choice" value="{{ choice.id }}">
+                    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                </li>
+            {% endfor %}
+            </ul>
+            <input type="submit" value ="VOTE" name="submit"/>
+        </form>
+    </body>
+</html>

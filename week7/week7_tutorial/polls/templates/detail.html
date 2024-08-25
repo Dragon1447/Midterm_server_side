@@ -1,0 +1,17 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>Question: {{ question.question_text }}</h1>
+        <p>Publist date: {{ question.pub_date }}</p>
+        <ul>
+        {% for choice in choices %}
+            <li>{{ choice.choice_text }} (Votes: {{choice.votes}})</li>
+        {% endfor %}
+        </ul>
+        <br/>
+            <a href="/polls/{{ question.id }}/vote/">
+            <button>Let's Vote</button>
+        </a>
+    </body>
+</html>
